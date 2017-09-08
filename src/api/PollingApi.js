@@ -5,6 +5,7 @@ export class PollingApi {
   constructor(apiClient) {
     this.apiClient = apiClient;
   }
+
   questions = () =>
     this.apiClient.get('/questions');
 }
