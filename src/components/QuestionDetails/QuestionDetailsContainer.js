@@ -5,6 +5,8 @@ import QuestionDetails from './QuestionDetails';
 
 import { makeQuestionDetailsSelector } from '../../selectors/questtionsSelectors';
 
+import { voteRequest } from '../../sagas/questionsSagas';
+
 const makeMapStateToProps = () => {
   const questionDetailsSelector = makeQuestionDetailsSelector();
   return (state, props) => ({
@@ -13,6 +15,6 @@ const makeMapStateToProps = () => {
 };
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({}, dispatch);
+  bindActionCreators({ voteRequest }, dispatch);
 
 export default connect(makeMapStateToProps, mapDispatchToProps)(QuestionDetails);

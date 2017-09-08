@@ -10,7 +10,7 @@ export class PollingApi {
     this.apiClient.get('/questions');
 
   vote = ({ questionId, choiceId }) =>
-    this.apiClient.post(`/questions/${questionId}/choice/${choiceId}`);
+    this.apiClient.post(`/questions/${questionId}/choices/${choiceId}`);
 
   create = ({ question, choices }) =>
     this.apiClient.post('/questions', { question, choices });

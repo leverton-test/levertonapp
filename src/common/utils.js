@@ -11,3 +11,7 @@ export const extractId = (url) => {
   const parts = url.split('/');
   return +parts[parts.length - 1];
 };
+
+export const replaceAtIndex = (array, index, item) => (
+  [...array.slice(0, index), item, ...array.slice(index + 1)]
+);

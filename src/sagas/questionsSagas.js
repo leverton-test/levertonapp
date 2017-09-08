@@ -18,13 +18,13 @@ function* watchQuestionsRequest() {
   yield takeLatest(questionsActionTypes.FETCH, handleQuestionsRequest);
 }
 
-
 export const voteRequest = (question, choice) => ({
-  type: questionsActionTypes.FETCH,
+  type: questionsActionTypes.VOTE,
   payload: {
     questionId: extractId(question.url),
-    choiceId: extractId(choice.ir)
-  }
+    choiceId: extractId(choice.url)
+  },
+  meta: { questionUrl: question.url }
 });
 
 const handleVoteRequest = apiCallSaga(questionsActionTypes.VOTE, pollingApi.vote);
@@ -32,6 +32,7 @@ const handleVoteRequest = apiCallSaga(questionsActionTypes.VOTE, pollingApi.vote
 function* watchVoteRequest() {
   yield takeLatest(questionsActionTypes.VOTE, handleVoteRequest);
 }
+
 
 export const createRequest = (question, choices) => ({
   type: questionsActionTypes.CREATE,
@@ -41,7 +42,7 @@ export const createRequest = (question, choices) => ({
 const handleCreateRequest = apiCallSaga(questionsActionTypes.CREATE, pollingApi.create);
 
 function* watchCreateRequest() {
-  yield takeLatest(questionsActionTypes.VOTE, handleCreateRequest);
+  yield takeLatest(questionsActionTypes.CREATE, handleCreateRequest);
 }
 
 export function* questionsSagas() {
