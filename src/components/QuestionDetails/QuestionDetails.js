@@ -19,13 +19,13 @@ export default class QuestionDetails extends Component {
   }
 
   state = {
-    choice: null
+    choiceUrl: null
   }
 
   handleVoteClick = () => {
-    if (this.state.choice !== null) {
+    if (this.state.choiceUrl !== null) {
       const { voteRequest, question } = this.props;
-      voteRequest(question, this.state.choice);
+      voteRequest(question.url, this.state.choiceUrl);
     }
   }
 
@@ -37,29 +37,32 @@ export default class QuestionDetails extends Component {
     return (
       <Dialog visible onHide={onHide} >
         <div className={styles.container}>
+          <button className={styles.hide} onClick={onHide}>✕</button>
           <div className={styles.header}>
             <h1 className={styles.title}>Choices</h1>
           </div>
           <div className={styles.subheader}>
             <h2 className={styles.question}>
-              {question.question}
+              Question: {question.question}
             </h2>
           </div>
           <div className={styles.choices}>
-            {question.choices.map(choice =>
-              <Choice
-                key={choice.url}
-                choice={choice}
-                selectred={choice === this.state.choice}
-                fraction={choice.votes / question.total}
-                onClick={() => this.setState({ choice })}
-              />
-            )}
-          </div>
-          <div className={styles.actions}>
-            <button className={styles.button} onClick={this.handleVoteClick}>
-              Save
-            </button>
+            <div className={styles.list}>
+              {question.choices.map(choice =>
+                <Choice
+                  key={choice.url}
+                  choice={choice}
+                  selected={choice.url === this.state.choiceUrl}
+                  fraction={question.total ? choice.votes / question.total : 0}
+                  onClick={() => this.setState({ choiceUrl: choice.url })}
+                />
+              )}
+            </div>
+            <div className={styles.actions}>
+              <button className={styles.button} onClick={this.handleVoteClick}>
+                Save
+              </button>
+            </div>
           </div>
         </div>
       </Dialog>

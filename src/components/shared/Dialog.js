@@ -20,8 +20,8 @@ export default class Dialog extends Component {
       <Modal
         isOpen={visible}
         onRequestClose={onHide}
-        // className={styles.modalClass}
-        // overlayClassName={styles.overlayClass}
+        className={styles.modalClass}
+        overlayClassName={styles.overlayClass}
         contentLabel="dialog"
       >
         {children}

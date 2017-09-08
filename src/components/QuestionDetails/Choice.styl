@@ -1,0 +1,43 @@
+@import '../shared/font';
+@import '../shared/colors';
+
+.choice
+  display: flex
+  align-items: center;
+
+  font(font-preset[choice])
+  color: color-text-black
+
+  height: 5rem
+  width: 100%
+
+  outline: none
+  cursor: pointer;
+  background: transparent;
+
+  box-sizing: border-box;
+
+  padding: 0 3rem
+
+  border-top: 1px solid color-text-gray
+
+  &:first-child
+    border-top: 0
+
+  &:hover
+    background-color: color-hover
+
+.selected
+  background-color: color-text-selected
+  color: white
+
+  &:hover
+    background-color: color-text-selected
+
+.title
+  flex-grow: 1
+  text-align: left;
+
+.percent
+  width: 7rem
+  margin-left: 2rem

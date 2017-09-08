@@ -18,13 +18,13 @@ function* watchQuestionsRequest() {
   yield takeLatest(questionsActionTypes.FETCH, handleQuestionsRequest);
 }
 
-export const voteRequest = (question, choice) => ({
+export const voteRequest = (questionUrl, choiceUrl) => ({
   type: questionsActionTypes.VOTE,
   payload: {
-    questionId: extractId(question.url),
-    choiceId: extractId(choice.url)
+    questionId: extractId(questionUrl),
+    choiceId: extractId(choiceUrl)
   },
-  meta: { questionUrl: question.url }
+  meta: { questionUrl }
 });
 
 const handleVoteRequest = apiCallSaga(questionsActionTypes.VOTE, pollingApi.vote);
