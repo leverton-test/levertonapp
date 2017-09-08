@@ -6,3 +6,8 @@ export const keyMirror = (object, transformKey = (key => key)) =>
 
 export const createActionTypes = (scope, actionTypes) =>
   keyMirror(actionTypes, key => `${scope}/${key}`);
+
+export const extractId = (url) => {
+  const parts = url.split('/');
+  return +parts[parts.length - 1];
+};

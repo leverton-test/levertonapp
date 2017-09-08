@@ -8,6 +8,12 @@ export class PollingApi {
 
   questions = () =>
     this.apiClient.get('/questions');
+
+  vote = ({ questionId, choiceId }) =>
+    this.apiClient.post(`/questions/${questionId}/choice/${choiceId}`);
+
+  create = ({ question, choices }) =>
+    this.apiClient.post('/questions', { question, choices });
 }
 
 export const pollingApi = new PollingApi(new ApiClient(settings.apiUrl));

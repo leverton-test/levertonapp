@@ -1,30 +1,51 @@
-import { call, put, takeLatest, fork } from 'redux-saga/effects';
+import { takeLatest, fork } from 'redux-saga/effects';
+import apiCallSaga from './apiCallSaga';
 
 import { questionsActionTypes } from './actionTypes';
 
 import { pollingApi } from '../api/PollingApi';
 
+import { extractId } from '../common/utils';
 
 export const questionsRequest = () => ({
   type: questionsActionTypes.FETCH,
   payload: {}
 });
 
-function* handleQuestionsRequest({ payload }) {
-  try {
-    const response = yield call(pollingApi.questions, payload);
-
-    yield put({ type: questionsActionTypes.FETCH_COMPLETE, payload: response });
-  } catch (error) {
-    yield put({ type: questionsActionTypes.FETCH_FAILED, payload: error });
-  }
-}
+const handleQuestionsRequest = apiCallSaga(questionsActionTypes.FETCH, pollingApi.questions);
 
 function* watchQuestionsRequest() {
   yield takeLatest(questionsActionTypes.FETCH, handleQuestionsRequest);
 }
 
 
+export const voteRequest = (question, choice) => ({
+  type: questionsActionTypes.FETCH,
+  payload: {
+    questionId: extractId(question.url),
+    choiceId: extractId(choice.ir)
+  }
+});
+
+const handleVoteRequest = apiCallSaga(questionsActionTypes.VOTE, pollingApi.vote);
+
+function* watchVoteRequest() {
+  yield takeLatest(questionsActionTypes.VOTE, handleVoteRequest);
+}
+
+export const createRequest = (question, choices) => ({
+  type: questionsActionTypes.CREATE,
+  payload: { question, choices }
+});
+
+const handleCreateRequest = apiCallSaga(questionsActionTypes.CREATE, pollingApi.create);
+
+function* watchCreateRequest() {
+  yield takeLatest(questionsActionTypes.VOTE, handleCreateRequest);
+}
+
 export function* questionsSagas() {
   yield fork(watchQuestionsRequest);
+  yield fork(watchVoteRequest);
+  yield fork(watchCreateRequest);
 }
