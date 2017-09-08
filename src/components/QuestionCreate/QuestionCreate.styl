@@ -1,0 +1,100 @@
+@import '../shared/font';
+@import '../shared/colors';
+
+.container
+  max-width: 1200px
+  margin: 0 auto;
+
+  padding: 1.5rem
+  box-sizing: border-box;
+
+  position: relative;
+
+.header
+  padding: 2rem 0 1rem
+
+.title
+  font(font-preset[title])
+  color: color-text-black
+
+.subheader
+  margin-top: 1.5rem
+
+.choicesheader
+  margin-top: 1.5rem
+  display: flex
+  align-items: baseline;
+
+.add
+  box-sizing: border-box;
+  margin-left: 2rem
+
+  font-size: 2rem
+  height: 3rem
+  width: 3rem
+
+  line-height: 3rem
+  cursor: pointer;
+  outline: none;
+
+  background-color: color-text-selected;
+  color: white;
+  border-radius: 50%
+
+
+.question
+  font(font-preset[subtitle])
+  color: color-text-black
+  margin-bottom: 1rem
+
+.choices
+  margin-top: 2rem
+  max-width: 900px
+
+.choice
+  margin-bottom: 1.5rem
+
+.hide
+  position: absolute;
+  font-size: 2rem
+  top: 2rem
+  right: 2rem
+
+  background: transparent
+  outline: none
+  cursor: pointer;
+  padding: 0.5rem
+
+.actions
+  margin-top: 2rem
+  display: flex;
+  width: 100%
+  justify-content: flex-end;
+
+.button
+  padding: 0.7rem 0
+  box-sizing: border-box;
+  width: 20rem
+
+  text-align: center;
+  font(font-preset[action])
+
+  color: white;
+  background-color: color-blue;
+
+  outline: none
+  cursor: pointer;
+
+  @media (max-width: 400px)
+    width: 100%
+
+.input
+  box-sizing: border-box;
+  font(font-preset[choice], false, false, 4rem)
+  height: 4rem
+  width: 100%
+  max-width: 900px
+
+  color: color-text-black
+  padding: 0 3rem
+  border: 1px solid color-text-gray

@@ -21,6 +21,9 @@ export default function questionsReducer(state = initialState, action) {
       }
       break;
     }
+    case questionsActionTypes.CREATE_COMPLETE: {
+      return [action.payload, ...state];
+    }
     default:
       break;
   }

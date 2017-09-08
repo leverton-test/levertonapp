@@ -4,6 +4,7 @@ import questions from './questions/questionsReducer';
 
 import questionsLoading from './uiState/questionsLoadingReducer';
 import voteSaving from './uiState/voteSavingReducer';
+import questionCreate from './uiState/questionCreateReducer';
 
 const rootReducer = combineReducers({
   questions: combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   }),
   ui: combineReducers({
     questionsLoading,
-    voteSaving
+    voteSaving,
+    questionCreate
   })
 });
 

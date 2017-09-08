@@ -4,7 +4,7 @@ const initialState = {
   isFetching: false,
 };
 
-export default function questionsLoadingReducer(state = initialState, action) {
+export default function voteSavingReducer(state = initialState, action) {
   switch (action.type) {
     case questionsActionTypes.VOTE:
       return { ...initialState, isFetching: true };

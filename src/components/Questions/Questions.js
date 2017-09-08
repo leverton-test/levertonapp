@@ -5,6 +5,7 @@ import LoadingIndicator from '../shared/LoadingIndicator';
 
 import QuestionPreview from './QuestionPreview';
 import QuestionDetailsContainer from '../QuestionDetails/QuestionDetailsContainer';
+import QuestionCreateContainer from '../QuestionCreate/QuestionCreateContainer';
 
 import styles from './Questions.styl';
 
@@ -16,7 +17,7 @@ export default class Questions extends Component {
   }
 
   state = {
-    openedQuestion: null
+    openedQuestion: null, isCreating: false
   }
 
   componentDidMount() {
@@ -31,11 +32,17 @@ export default class Questions extends Component {
 
   render() {
     const { questions, fetchState } = this.props;
-    const { openedQuestion } = this.state;
+    const { openedQuestion, isCreating } = this.state;
     return (
       <div className={styles.container}>
         <div className={styles.header}>
           <h1 className={styles.title}>Questions</h1>
+          <button
+            className={styles.add}
+            onClick={() => this.setState({ isCreating: true })}
+          >
+            +
+          </button>
         </div>
         <div className={styles.questions}>
           {questions.map(q =>
@@ -50,10 +57,15 @@ export default class Questions extends Component {
             visible={fetchState.isFetching}
           />
         </div>
-        <QuestionDetailsContainer
-          questionId={openedQuestion}
-          onHide={() => this.setState({ openedQuestion: null })}
-        />
+        {openedQuestion &&
+          <QuestionDetailsContainer
+            questionId={openedQuestion}
+            onHide={() => this.setState({ openedQuestion: null })}
+          />
+        }
+        {isCreating &&
+          <QuestionCreateContainer onHide={() => this.setState({ isCreating: false })} />
+        }
       </div>
     );
   }
