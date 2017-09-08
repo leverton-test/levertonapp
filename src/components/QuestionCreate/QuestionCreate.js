@@ -24,9 +24,7 @@ export default class QuestionCreate extends Component {
 
   componentWillReceiveProps({ createState: newCreateState }) {
     const { onHide, createState } = this.props;
-    console.log(createState, newCreateState);
     if (!createState.isCreated && newCreateState.isCreated) {
-      console.log(111);
       onHide();
     }
   }
