@@ -13,9 +13,12 @@ export default class QuestionPreview extends Component {
       const { question, onClick } = this.props;
       const date = new Date(question.published_at);
       return (
-        <div className={styles.container} onClick={() => onClick(question)}>
-          <div className={styles.title}>{question.question}</div>
-          <div className={styles.date}>{date.toLocaleDateString()}</div>
+        <div className={styles.container}>
+          <div className={styles.content} onClick={() => onClick(question)}>
+            <div className={styles.title}>{question.question}</div>
+            <div className={styles.date}>{date.toLocaleDateString()}</div>
+            <div className={styles.choices}>{question.choices.length} choices</div>
+          </div>
         </div>
       );
     }
