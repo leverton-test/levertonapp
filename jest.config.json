@@ -1,0 +1,13 @@
+{
+  "transformIgnorePatterns": [
+    "node_modules/"
+  ],
+  "moduleDirectories": [
+    "src",
+    "node_modules"
+  ],
+  "transform": {
+    "^.+\\.js$": "babel-jest",
+    "\\.js$": "babel-jest"
+  }
+}
