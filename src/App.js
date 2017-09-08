@@ -1,8 +1,14 @@
 import React from 'react';
-import { pollingApi } from './api/PollingApi';
+import { Provider } from 'react-redux';
+
+import Questions from './components/Questions/Questions';
+
+import store from './reducers/store';
+
+import './components/shared/layout.styl';
 
 export default () => (
-  <div />
+  <Provider store={store}>
+    <Questions />
+  </Provider>
 );
-
-pollingApi.questions().then(data => console.log(data));
