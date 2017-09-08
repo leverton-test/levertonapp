@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import QuestionPreview from './QuestionPreview';
-import QuestionDetails from '../QuestionDetails/QuestionDetails';
+import QuestionDetailsContainer from '../QuestionDetails/QuestionDetailsContainer';
 
 import styles from './Questions.styl';
 
@@ -43,7 +43,7 @@ export default class Questions extends Component {
             />
           )}
         </div>
-        <QuestionDetails
+        <QuestionDetailsContainer
           questionId={openedQuestion}
           onHide={() => this.setState({ openedQuestion: null })}
         />

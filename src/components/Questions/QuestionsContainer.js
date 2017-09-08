@@ -5,11 +5,11 @@ import Questions from './Questions';
 
 import { questionsRequest } from '../../sagas/questionsSagas';
 
-import { questtionsSelector } from '../../selectors/questtionsSelectors';
+import { questionsSelector } from '../../selectors/questtionsSelectors';
 
 
 const mapStateToProps = state => ({
-  questions: questtionsSelector(state),
+  questions: questionsSelector(state),
 });
 
 const mapDispatchToProps = dispatch =>
