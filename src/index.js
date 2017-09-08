@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import Modal from 'react-modal';
 import { AppContainer } from 'react-hot-loader';
 
 import App from './App';
@@ -12,6 +13,8 @@ const renderApp = AppComponent => render(
   </AppContainer>,
   appElement
 );
+
+Modal.setAppElement(appElement);
 
 renderApp(App);
 

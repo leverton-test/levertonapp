@@ -1,27 +1,53 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import QuestionPreview from './QuestionPreview';
+import QuestionDetails from '../QuestionDetails/QuestionDetails';
+
 import styles from './Questions.styl';
 
 export default class Questions extends Component {
-    static propTypes = {
-      questions: PropTypes.array.isRequired,
-      questionsRequest: PropTypes.func.isRequired
-    }
+  static propTypes = {
+    questions: PropTypes.array.isRequired,
+    questionsRequest: PropTypes.func.isRequired
+  }
 
-    componentDidMount() {
-      this.props.questionsRequest();
-    }
+  state = {
+    openedQuestion: null
+  }
 
-    render() {
-      const { questions } = this.props;
-      return (
-        <div className={styles.container}>
-          <h1>Questions</h1>
+  componentDidMount() {
+    this.props.questionsRequest();
+  }
+
+  handleQuestionClick = (question) => {
+    this.setState({
+      openedQuestion: question.url
+    });
+  }
+
+  render() {
+    const { questions } = this.props;
+    const { openedQuestion } = this.state;
+    return (
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <h1 className={styles.title}>Questions</h1>
+        </div>
+        <div className={styles.questions}>
           {questions.map(q =>
-            <div key={q.url}>{q.question}</div>
+            <QuestionPreview
+              onClick={this.handleQuestionClick}
+              question={q}
+              key={q.url}
+            />
           )}
         </div>
-      );
-    }
+        <QuestionDetails
+          questionId={openedQuestion}
+          onHide={() => this.setState({ openedQuestion: null })}
+        />
+      </div>
+    );
+  }
 }
