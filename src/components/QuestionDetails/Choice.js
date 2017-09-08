@@ -9,7 +9,7 @@ const Choice = ({ choice, fraction, selected, onClick }) => (
     onClick={() => onClick(choice)}
   >
     <div className={styles.title}>{choice.choice}</div>
-    <div className={styles.votes}>{choice.votes}</div>
+    <div className={styles.votes}>{choice.votes} votes</div>
     <div className={styles.percent}>{(fraction * 100).toFixed(1)}%</div>
   </button>
 );

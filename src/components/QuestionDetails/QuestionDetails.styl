@@ -49,10 +49,18 @@
   justify-content: flex-end;
 
 .button
-  padding: 0.7rem 2rem
+  padding: 0.7rem 0
   box-sizing: border-box;
+  width: 20rem
+
+  text-align: center;
   font(font-preset[action])
+
   color: white;
   background-color: color-blue;
+
   outline: none
   cursor: pointer;
+
+  @media (max-width: 400px)
+    width: 100%

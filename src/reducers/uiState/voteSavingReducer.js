@@ -6,11 +6,11 @@ const initialState = {
 
 export default function questionsLoadingReducer(state = initialState, action) {
   switch (action.type) {
-    case questionsActionTypes.FETCH:
+    case questionsActionTypes.VOTE:
       return { ...initialState, isFetching: true };
-    case questionsActionTypes.FETCH_COMPLETE:
+    case questionsActionTypes.VOTE_COMPLETE:
       return initialState;
-    case questionsActionTypes.FETCH_FAILED: {
+    case questionsActionTypes.VOTE_FAILED: {
       return initialState;
     }
     default:

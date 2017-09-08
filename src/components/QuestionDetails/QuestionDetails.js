@@ -10,6 +10,7 @@ import styles from './QuestionDetails.styl';
 export default class QuestionDetails extends Component {
   static propTypes = {
     question: PropTypes.object,
+    savingState: PropTypes.object.isRequired,
     onHide: PropTypes.func.isRequired,
     voteRequest: PropTypes.func.isRequired,
   }
@@ -23,14 +24,14 @@ export default class QuestionDetails extends Component {
   }
 
   handleVoteClick = () => {
-    if (this.state.choiceUrl !== null) {
-      const { voteRequest, question } = this.props;
+    const { voteRequest, question, savingState } = this.props;
+    if (this.state.choiceUrl !== null && !savingState.isFetching) {
       voteRequest(question.url, this.state.choiceUrl);
     }
   }
 
   render() {
-    const { question, onHide } = this.props;
+    const { question, savingState, onHide } = this.props;
     if (!question) {
       return null;
     }
@@ -60,7 +61,7 @@ export default class QuestionDetails extends Component {
             </div>
             <div className={styles.actions}>
               <button className={styles.button} onClick={this.handleVoteClick}>
-                Save
+                {savingState.isFetching ? 'Saving...' : 'Save'}
               </button>
             </div>
           </div>
